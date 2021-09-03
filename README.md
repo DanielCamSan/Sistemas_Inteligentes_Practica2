@@ -1,4 +1,4 @@
-# Sistemas_Inteligentes_Practica2 📚
+# Intelligent Systems Practice 2 📚
 
 <br />
 
@@ -12,7 +12,7 @@
 
 <br />
 
-##	2. Formulate the Problem
+## 2. Formulate the Problem
 
 		- Initial State
 
@@ -42,6 +42,8 @@
 		- Cost of the route
         
 			1
-			
+
+## 1. For N = 2
+	4! = 24, where 12 states have a solution and 12 haven't solution 
 
     
