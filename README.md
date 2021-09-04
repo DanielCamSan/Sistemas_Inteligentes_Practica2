@@ -1,6 +1,6 @@
 # Intelligent Systems Practice 2 📚
 
-## 📕 First we have to design the Problem Solver Agent and for this we have a to follow the steps that we learn in classes.
+### 📕 First we have to design the Problem Solver Agent and for this we have a to follow the steps that we learn in classes.
 
 
 <details>
