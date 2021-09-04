@@ -38,6 +38,7 @@ def n_puzzle(n, n_parts):
     generate_tables(table)
     print ("All States:",get_quantity_combinations(list_combinations))
 
+
 def get_data():
     print('*** WELCOME to N PUZZLE ***')
     print('Insert the size of Puzzle: ')
