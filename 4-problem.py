@@ -97,16 +97,17 @@ def showPath (path):
 #Random Initial state
 
 
-initialState=[1,2,3,4,5,6,7,8,0]
+initialState=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0]
 
 shuffle(initialState)
 
 second_initial_state= swapPositions(initialState, 1, 2)  if  initialState[1]!=0 and initialState[2]!=0 else  swapPositions(initialState, 4, 5)
 
 #we define the actions LURD (Left, Up, Right, Down)
+
 FirstNode=State()
 FirstNode.setList(initialState)
-#FirstNode.setList([8,7,4,3,6,5,0,1,2])
+
 FirstNode.setFather(None)
 Actions=['L','U','R','D'] 
 counter=BFS(FirstNode,Actions)
