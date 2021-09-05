@@ -98,7 +98,6 @@ FirstNode=State()
 FirstNode.setList(initialState)
 FirstNode.setFather(None)
 
-
 counter=BFS(FirstNode,Actions)
 print(counter)
 
