@@ -1,6 +1,8 @@
 from queue import Queue
-from random import shuffle
+import time
+
 q = Queue()
+
 class State:
     def __init__(self):
         self.list=[]
@@ -25,18 +27,19 @@ def swapPositions(list, pos1, pos2):
     return list
 
 #Transition function expect a state and an action and will return the possible succesor state in base of the action
-def TF(state, action):
+def TF(state, action,path):
     resulList=[]
     father = state.father
     listNew=state.list.copy()
     if action == 'L':
-        if listNew[3]==0 or listNew[7]==0 or listNew[11]==0 or listNew[15]==0:  #verify if it is possible
+        if listNew[3]==0 or listNew[7]==0 or listNew[11]==0 or listNew[15]==0 :  #verify if it is possible
             return None
-        resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)+1)                    
+        resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)+1)        
+            
     elif action == 'U':
         if listNew[12]==0 or listNew[13]==0 or listNew[14]==0 or listNew[15]==0:  #verify if it is possible
             return None
-        resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)+3)
+        resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)+4)
     elif action == 'R':
         if listNew[0]==0 or listNew[4]==0 or listNew[8]==0 or listNew[12]==0:  #verify if it is possible
             return None
@@ -44,74 +47,78 @@ def TF(state, action):
     elif action == 'D':
         if listNew[0]==0 or listNew[1]==0 or listNew[2]==0 or listNew[3]==0:  #verify if it is possible
             return None
-        resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)-3)
+        resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)-4)
 
-    while father != None: #compare if the father list is not the same of the result List
-        if compare(resulList,father.list):
+    for singleState in path:
+        if compare(singleState,resulList):
             return None
-        else:
-            father=father.father
     return resulList
 
 #Where the magic start,
-def BFS(initialState, Actions,goalstate):   
-    state_counter=1
+def BFS(initialState, Actions, goalState):
+    path=[initialState.list]
+    state_counter=1 #count the initial state 
     q.put(initialState)
     while not q.empty():
         state=q.get()
-        if compare(state.list,goalstate):
-            return state_counter,state
+        if compare(goalState,state.list):
+            return state_counter,state,path
         for action in Actions:
             sucessor=State()
-            sucessor.list=TF(state,action)
+            sucessor.list=TF(state,action,path)
             if sucessor.list != None: #return none if the state cant expand or if it already exist
                 state_counter=state_counter+1
-                print(state_counter)
                 sucessor.setFather(state)
-                if compare(sucessor.list,goalstate):
-                        return state_counter,sucessor
+                if compare(goalState,sucessor.list):
+                   return state_counter,sucessor,path
                 q.put(sucessor)
-                
-    return state_counter,None
+                path.append(sucessor.list)
+    return state_counter,None,path
+
 
 #The last step show the steps
 def showPath (path):
     for item in path:
         print("[ ",end="")
         for number in item:
-            print(number," , ",end="")
+            print(number,"  ",end="")
         print("]")
 
 
 #Where the main begin
+start_time = time.time()
 #State consist of a list of 9 numbers(0 to 8) tahth indicates the position of each box. Being the 0 the blank space
 #Random Initial state
-initialState=[1,4,2,14,11,9,3,8,0,6,5,12,10,7,13,15]
-
+initialState=[1,2,10,3,6,5,7,0,4,8,14,11,12,9,13,15]
 #we define the goal state
-goalState=[1,4,14,8,11,3,2,12,6,9,13,5,10,7,0,15]
-
+goalState=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 #we define the actions LURD (Left, Up, Right, Down)
 Actions=['L','U','R','D'] 
-
-#set FirstNode
+#define Initial State
 FirstNode=State()
 FirstNode.setList(initialState)
 FirstNode.setFather(None)
+counter,objective,path=BFS(FirstNode,Actions,goalState)
+print("The number of space states are ",counter)
+#showPath(path)
 
-objective=State()
-counter,objective=BFS(FirstNode,Actions,goalState)
-path=[]
-
+print("=============================================")
+goalPath=[]
+state=State()
 if  objective != None:
     state=objective.father
-    path.append(objective.list)
+    goalPath.append(objective.list)
     while(state.father != None):    
-        path.append(state.list);
-    path.append(state.list);
-    path.reverse()
-    showPath(path)
-    print("The number of states in the tree are", counter)
+        goalPath.append(state.list);
+        state=state.father
+    goalPath.append(state.list);
+    goalPath.reverse()
+    showPath(goalPath)
+    print("The number of steps to find the goal state are",len(goalPath)-1)
 
+
+
+
+print("--- %s seconds ---" % (time.time() - start_time))
 
 

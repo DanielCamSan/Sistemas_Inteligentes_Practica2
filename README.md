@@ -44,10 +44,13 @@
 </details>
 
 ## 1. For N = 2
-	4! = 24, where 12 states have a solution and 12 haven't a solution, eventually we can probe that with the png added in the repository
+	4! = 24, where 12 states have a solution and 12 haven't a solution, eventually we can probe that with the png added in the repository  
+	Here we could only have 2 possible states of a node, where one of those possible states from the second state will mostly be a repeated state.
 
 ## 2. For N = 3
 
-	9! = 362 880, where 181 440 states have a solution and 181 440 haven't a solution 
+	9! = 362 880, where 181 440 states have a solution and 181 440 haven't a solution also we can probe it with the n=2 puzle code that we made, we did that because building and running all the states in n=3 puzzle takes 45 minutes because the comparisson between all the states with the pointed state takes a lot of time, but it works perfectly.
 
-    
+## 3. For N = 4
+
+	15! = 1 307 674 368 000, where only half (653 837 184 000) states have a solution

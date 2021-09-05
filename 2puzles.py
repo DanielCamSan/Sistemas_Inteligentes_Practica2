@@ -26,7 +26,7 @@ def swapPositions(list, pos1, pos2):
     return list
 
 #Transition function expect a state and an action and will return the possible succesor state in base of the action
-def TF(state, action):
+def TF(state, action,path):
     resulList=[]
     father = state.father
     listNew=state.list.copy()
@@ -34,25 +34,32 @@ def TF(state, action):
         if listNew[1]==0 or listNew[3]==0 :  #verify if it is possible
             return None
         resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)+1)        
-            
+       
     elif action == 'U':
         if listNew[2]==0 or listNew[3]==0:  #verify if it is possible
             return None
         resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)+2)
+       
     elif action == 'R':
         if listNew[0]==0 or listNew[2]==0:  #verify if it is possible
             return None
         resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)-1)
+
     elif action == 'D':
         if listNew[0]==0 or listNew[1]==0 :  #verify if it is possible
             return None
         resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)-2)
+      
 
-    while father != None: #compare if the father list is not the same of the result List
-        if compare(resulList,father.list):
+   # while father != None: #compare if the father list is not the same of the result List
+    #    if compare(resulList,father.list):
+     #       return None
+      #  else:
+       #     father=father.father
+    for singleState in path:
+        if compare(singleState,resulList):
             return None
-        else:
-            father=father.father
+    print(action)
     return resulList
 
 #Where the magic start,
@@ -64,7 +71,7 @@ def BFS(initialState, Actions):
         state=q.get()        
         for action in Actions:
             sucessor=State()
-            sucessor.list=TF(state,action)
+            sucessor.list=TF(state,action,path)
             if sucessor.list != None: #return none if the state cant expand or if it already exist
                 state_counter=state_counter+1
                 sucessor.setFather(state)
@@ -85,8 +92,8 @@ def showPath (path):
 #Where the main begin
 #State consist of a list of 9 numbers(0 to 8) tahth indicates the position of each box. Being the 0 the blank space
 #Random Initial state
-initialState=[1,2,3,0]
-shuffle(initialState)
+initialState=[0,3,1,2]
+#shuffle(initialState)#
 
 #we define the actions LURD (Left, Up, Right, Down)
 Actions=['L','U','R','D'] 
