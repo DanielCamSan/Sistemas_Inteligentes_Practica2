@@ -3,7 +3,6 @@ from queue import Queue
 from random import shuffle
 q = Queue()
 
-
 class State:
     def __init__(self):
         self.list=[]
@@ -29,10 +28,10 @@ def swapPositions(list, pos1, pos2):
 
 
 #Transition function expect a state and an action and will return the possible succesor state in base of the action
-def TF(state, action):
+def TF(state, action,states):
     resulList=[]
     father = state.father
-    listNew=state.list
+    listNew=state.list.copy()
     if action == 'L':
         if listNew[2]==0 or listNew[8]==0 or listNew[5]==0:  #verify if it is possible
             return None
@@ -51,27 +50,34 @@ def TF(state, action):
             return None
         resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)-3)
 
-    while father != None: #compare if the father list is not the same of the result List
-        if compare(resulList,father.list):
-            father=father.father
-        else:
+    #while father != None: #compare if the father list is not the same of the result List
+     #   if compare(resulList,father.list):
+      #      return None
+       # else:
+        #    father=father.father
+    for singleState in states:
+        if compare(singleState,resulList):
             return None
     return resulList
 
 #Where the magic start,
 def BFS(initialState, Actions):
+    states=[]
     state_counter=0
     q.put(initialState)
     while not q.empty():
+        
         state=q.get()
+        
         for action in Actions:
             sucessor=State()
-            sucessor.list=TF(state,action)
+            sucessor.list=TF(state,action,states)
             if sucessor.list != None: #return none if the state cant expand or if it already exist
                 state_counter=state_counter+1
                 print(state_counter)
                 sucessor.setFather(state)
                 q.put(sucessor)
+                states.append(sucessor.list)
     return state_counter
 
 #The last step show the steps
@@ -88,6 +94,8 @@ def showPath (path):
 #Where the main begin
 #State consist of a list of 9 numbers(0 to 8) tahth indicates the position of each box. Being the 0 the blank space
 #Random Initial state
+n=input("escriba el numero")
+
 initialState=[1,2,3,4,5,6,7,8,0]
 
 shuffle(initialState)
@@ -97,6 +105,7 @@ second_initial_state= swapPositions(initialState, 1, 2)  if  initialState[1]!=0 
 #we define the actions LURD (Left, Up, Right, Down)
 FirstNode=State()
 FirstNode.setList(initialState)
+#FirstNode.setList([8,7,4,3,6,5,0,1,2])
 FirstNode.setFather(None)
 Actions=['L','U','R','D'] 
 counter=BFS(FirstNode,Actions)

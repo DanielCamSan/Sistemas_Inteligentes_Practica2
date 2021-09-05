@@ -43,10 +43,11 @@
 
 </details>
 
-## 1. For N = 3
-	4! = 24, where 12 states have a solution and 12 haven't solution 
+## 1. For N = 2
+	4! = 24, where 12 states have a solution and 12 haven't a solution, eventually we can probe that with the png added in the repository
 
-## 2. For N = 8
-	9! = 362 880, where 181 440 states have a solution and 181 440 haven't solution 
+## 2. For N = 3
+
+	9! = 362 880, where 181 440 states have a solution and 181 440 haven't a solution 
 
     
