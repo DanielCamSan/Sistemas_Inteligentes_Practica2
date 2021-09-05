@@ -1,7 +1,6 @@
 from queue import Queue
 from random import shuffle
 q = Queue()
-
 class State:
     def __init__(self):
         self.list=[]
@@ -24,8 +23,6 @@ def compare(list1,list2):
 def swapPositions(list, pos1, pos2):   
     list[pos1], list[pos2] = list[pos2], list[pos1]
     return list
-
-
 
 #Transition function expect a state and an action and will return the possible succesor state in base of the action
 def TF(state, action):
@@ -89,15 +86,10 @@ def showPath (path):
 #Where the main begin
 #State consist of a list of 9 numbers(0 to 8) tahth indicates the position of each box. Being the 0 the blank space
 #Random Initial state
-
-
 initialState=[1,4,2,14,11,9,3,8,0,6,5,12,10,7,13,15]
-
-#shuffle(initialState)
 
 #we define the goal state
 goalState=[1,4,14,8,11,3,2,12,6,9,13,5,10,7,0,15]
-
 
 #we define the actions LURD (Left, Up, Right, Down)
 Actions=['L','U','R','D'] 
