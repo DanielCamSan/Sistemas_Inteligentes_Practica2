@@ -1,9 +1,8 @@
 import itertools
-import numpy as np
-import math
 import sys
+import numpy as np
+from random import shuffle
 from tabulate import tabulate
-
 
 def get_quantity_combinations(list_combinations):
     return len(list_combinations)
@@ -34,6 +33,7 @@ def generate_tables (list_combinations):
 
 def n_puzzle(n, n_parts):
     list_combinations = setup_list_combinations(n)
+    shuffle(list_combinations)
     table = split_list_combinations(list_combinations, n_parts)
     generate_tables(table)
     print ("All States:",get_quantity_combinations(list_combinations))
@@ -42,8 +42,8 @@ def n_puzzle(n, n_parts):
 def get_data():
     print('*** WELCOME to N PUZZLE ***')
     print('Insert the size of Puzzle: ')
-    n = int(input()) + 1
-    n_parts = math.isqrt(n)
+    n_parts = int(input())
+    n = pow(n_parts, 2)
     return n, n_parts
 
 
