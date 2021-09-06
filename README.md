@@ -50,11 +50,17 @@ Here we could only have 2 possible states of a node, where one of those possible
 
 ## 2. For N = 3
 
-9! = 362 880, where 181 440 states have a solution and 181 440 haven't a solution also we can probe it with the n=2 puzle code that we made, we did that because building and running all the states in n=3 puzzle takes 45 minutes because the comparisson between all the states with the pointed state takes a lot of time, but it works perfectly.
+9! = 362 880, where 181 440 states have a solution and 181 440 haven't a solution 
+	We can probe it with the n=2 puzle code that we made, we did that because building and running all the states in n=3 puzzle takes 6790.9135222435 seconds because the comparisson between all the states with the pointed state takes a lot of time, but it works perfectly. in both files the code is the same the only variant is the size of the list. Also we made a plus for see all the posible states and exporting them in a csv file:
+
+	The code used to get all the states is "3puzles.py", we used the alghoritms that we saw in classes
+	The code used to generate the csv with all the posible is "display_n_puzzle.py"
 
 ## 3. For N = 4
 
 15! = 1 307 674 368 000, where only half (653 837 184 000) states have a solution
+	In this exercise we dont see all the space states in the three, we just focus to identify the difference at using memory and the time used  beetwen the BFS and ID alghoritm, so with that objective we develop 2 files with each alghoritm. Finally with the results we made a table comparing them
+
 
 ---
 
@@ -65,9 +71,22 @@ Steps | Spaces | Time | Initial State
 6 |  163 States | 0.0059967041015625 seconds | [1,5,2,3,4,6,10,7,8,9,14,11,12,0,13,15]
 7 |  485 States | 0.03200030326843262 seconds | [1,5,2,3,4,6,10,7,8,0,14,11,12,9,13,15]
 8 |  694 States | 0.06101036071777344 seconds | [1,5,2,3,4,6,10,7,0,8,14,11,12,9,13,15]
-9 |  1897 States | 0.3950011730194092 seconds | [1,5,2,3,0,6,10,7,4,8,14,11,12,9,13,15]
-10 |  5143 States | 2.8952572345733643 seconds | [1,5,2,3,6,0,10,7,4,8,14,11,12,9,13,15]
+9 |  1 897 States | 0.3950011730194092 seconds | [1,5,2,3,0,6,10,7,4,8,14,11,12,9,13,15]
+10 |  5 143 States | 2.8952572345733643 seconds | [1,5,2,3,6,0,10,7,4,8,14,11,12,9,13,15]
 14 | 69 833 States | 510.01443910598755 seconds | [1,2,10,3,6,5,7,0,4,8,14,11,12,9,13,15]
+
+--- 
+
+With ID:
+
+Steps | Spaces | Time | Initial State
+:---: | :---: | :---: | :---:
+6 |  1 613 States | 0.0020003318786621094 seconds | [1,5,2,3,4,6,10,7,8,9,14,11,12,0,13,15]
+7 |  9 693 States | 0.0090179443359375 seconds | [1,5,2,3,4,6,10,7,8,0,14,11,12,9,13,15]
+8 |  15 225 States | 0.014000654220581055 seconds | [1,5,2,3,4,6,10,7,0,8,14,11,12,9,13,15]
+9 |  79 471 States | 0.06299996376037598 seconds | [1,5,2,3,0,6,10,7,4,8,14,11,12,9,13,15]
+10 |  479 109 States | 0.3730032444000244 seconds | [1,5,2,3,6,0,10,7,4,8,14,11,12,9,13,15]
+14 |  33 128 735 States | 27.07104516029358 seconds | [1,2,10,3,6,5,7,0,4,8,14,11,12,9,13,15]
 
 --- 
 
@@ -75,12 +94,12 @@ TIME COMPARISSON
 
 Steps |  BFS  | ID 
 :---: | :---: | :---:
-6 | 0.0059967041015625 seconds |  ---
-7 | 0.03200030326843262 seconds |  ---
-8 | 0.06101036071777344 seconds |  ---
-9 | 0.3950011730194092 seconds |  ---
-10 | 2.8952572345733643 seconds |  ---
-14 | 510.01443910598755 seconds | ---  
+6 | 0.0059967041015625 seconds |  0.0020003318786621094 seconds
+7 | 0.03200030326843262 seconds |  0.0090179443359375 seconds
+8 | 0.06101036071777344 seconds |  0.014000654220581055 seconds
+9 | 0.3950011730194092 seconds |  0.06299996376037598 seconds
+10 | 2.8952572345733643 seconds |  0.3730032444000244 seconds
+14 | 510.01443910598755 seconds | 27.07104516029358  seconds
 
 ---
 
@@ -88,12 +107,12 @@ EXPANDED SPACES COMPARISSON
 
 Steps |  BFS  | ID 
 :---: | :---: | :---:
-6 | 163 States | --- 
-7 | 485 States | --- 
-8 | 694 States | --- 
-9 | 1897 States | --- 
-10 | 5143 States | --- 
-14 | 69 833 States | --- 
+6 | 163 States | 1 613 States
+7 | 485 States | 9 693 States
+8 | 694 States | 15 225 States
+9 | 1 897 States | 79 471 States
+10 | 5 143 States | 479 109 States
+14 | 69 833 States | 33 128 735 States
 
 
 

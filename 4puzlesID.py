@@ -105,7 +105,7 @@ def showPath (path):
 start_time = time.time()
 #State consist of a list of 9 numbers(0 to 8) tahth indicates the position of each box. Being the 0 the blank space
 #Random Initial state
-initialState=[1,5,2,3,4,6,10,7,8,9,0,11,12,13,14,15]
+initialState=[1,2,10,3,6,5,7,0,4,8,14,11,12,9,13,15]
 #we define the goal state
 goalState=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 #we define the actions LURD (Left, Up, Right, Down)
