@@ -44,8 +44,8 @@
 </details>
 
 ## 1. For N = 2
-	4! = 24, where 12 states have a solution and 12 haven't a solution, eventually we can probe that with the png added in the repository  
-	Here we could only have 2 possible states of a node, where one of those possible states from the second state will mostly be a repeated state.
+4! = 24, where 12 states have a solution and 12 haven't a solution, eventually we can probe that with the png added in the repository  
+Here we could only have 2 possible states of a node, where one of those possible states from the second state will mostly be a repeated state.
 
 ## 2. For N = 3
 
