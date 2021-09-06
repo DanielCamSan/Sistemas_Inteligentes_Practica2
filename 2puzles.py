@@ -59,7 +59,6 @@ def TF(state, action,path):
     for singleState in path:
         if compare(singleState,resulList):
             return None
-    print(action)
     return resulList
 
 #Where the magic start,
