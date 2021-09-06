@@ -1,5 +1,6 @@
 from queue import Queue
 from random import shuffle
+from numpy import genfromtxt
 q = Queue()
 
 class State:
@@ -87,7 +88,15 @@ def showPath (path):
             print(number,"  ",end="")
         print("]")
 
+def read_from_csv ():
+    data = genfromtxt('my_file.csv', usecols= range(1, 5) , delimiter=",", dtype=int)
+    initial_state_parsed = [x for x in data[0]]
+    goal_state_parsed = [x for x in data[1]]
+    print(initial_state_parsed)
+    print(goal_state_parsed)
+    return initial_state_parsed, goal_state_parsed
 
+data_test = read_from_csv()
 #Where the main begin
 #State consist of a list of 9 numbers(0 to 8) tahth indicates the position of each box. Being the 0 the blank space
 #Random Initial state
