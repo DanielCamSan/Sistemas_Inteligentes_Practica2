@@ -54,25 +54,46 @@
 ## 3. For N = 4
 
 	15! = 1 307 674 368 000, where only half (653 837 184 000) states have a solution
-		
-		# 4 Steps //  70 States
-		initialState=[1,5,2,3,4,6,10,7,8,9,0,11,12,13,14,15]
-		# 5 Steps //  119 States
-		initialState=[1,5,2,3,4,6,10,7,8,9,14,11,12,13,0,15]
-		# 6 Steps //  163 States // time 0.0059967041015625 seconds
-		initialState=[1,5,2,3,4,6,10,7,8,9,14,11,12,0,13,15]
-		# 7 Steps //  485 States // time 0.03200030326843262 seconds
-		initialState=[1,5,2,3,4,6,10,7,8,0,14,11,12,9,13,15]
-		# 8 Steps //  694 States // time 0.06101036071777344 seconds
-		initialState=[1,5,2,3,4,6,10,7,0,8,14,11,12,9,13,15]
-		# 9 Steps //  1897 States // time 0.3950011730194092 seconds
-		initialState=[1,5,2,3,0,6,10,7,4,8,14,11,12,9,13,15]
-		# 10 Steps //  5143 States // time 2.8952572345733643 seconds
-		initialState=[1,5,2,3,6,0,10,7,4,8,14,11,12,9,13,15]
+
+	TIME COMPARISSON
+	|    | BFS | ID |
+	| ------------- | ------------- |
+	| 6 | 0.0059967041015625 seconds |  |
+	| 7 | 0.03200030326843262 seconds |  |
+	| 8 | 0.06101036071777344 seconds |  |
+	| 9 | 0.3950011730194092 seconds |  |
+	| 10 | 2.8952572345733643 seconds |  |
+	| 14 | 510.01443910598755 seconds |  |
+
+
+	EXPANDED SPACES COMPARISSON
+	|    | BFS | ID |
+	| ------------- | ------------- |
+	| 6 | 163 States |  |
+	| 7 | 485 States |  |
+	| 8 | 694 States |  |
+	| 9 | 1897 States |  |
+	| 10 | 5143 States |  |
+	| 14 | 69 833 States |  |
+
+
+
+
+		With BFS:
+			6 Steps //  163 States // time 0.0059967041015625 seconds
+				initialState=[1,5,2,3,4,6,10,7,8,9,14,11,12,0,13,15]
+			7 Steps //  485 States // time 0.03200030326843262 seconds
+				initialState=[1,5,2,3,4,6,10,7,8,0,14,11,12,9,13,15]
+			8 Steps //  694 States // time 0.06101036071777344 seconds
+				initialState=[1,5,2,3,4,6,10,7,0,8,14,11,12,9,13,15]
+			9 Steps //  1897 States // time 0.3950011730194092 seconds
+				initialState=[1,5,2,3,0,6,10,7,4,8,14,11,12,9,13,15]
+			10 Steps //  5143 States // time 2.8952572345733643 seconds
+				initialState=[1,5,2,3,6,0,10,7,4,8,14,11,12,9,13,15]
+
 
 		# 14 Steps // 69 833 States // time 510.01443910598755 seconds
 		initialState=[1,2,10,3,6,5,7,0,4,8,14,11,12,9,13,15]
 
 
-		####
-		goalState=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+		
