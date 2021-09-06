@@ -1,5 +1,6 @@
 from queue import Queue
 from random import shuffle
+import time
 q = Queue()
 
 class State:
@@ -47,11 +48,6 @@ def TF(state, action,path):
         if listNew[0]==0 or listNew[1]==0 or listNew[2]==0:  #verify if it is possible
             return None
         resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)-3)
-    #while father != None: #compare if the father list is not the same of the result List
-    #    if compare(resulList,father.list):
-    #        return None
-    #    else:
-    #        father=father.father
     for singleState in path:
         if compare(singleState,resulList):
             return None
@@ -69,24 +65,14 @@ def BFS(initialState, Actions):
             sucessor.list=TF(state,action,path)
             if sucessor.list != None: #return none if the state cant expand or if it already exist
                 state_counter=state_counter+1
+                print(state_counter)
                 sucessor.setFather(state)
                 q.put(sucessor)
                 path.append(sucessor.list)
     return state_counter
 
-
-#The last step show the steps
-def showPath (path):
-    for item in path:
-        print("[ ",end="")
-        for number in item:
-            print(number," , ",end="")
-        print("]")
-
-
-
-
 #Where the main begin
+start_time = time.time()
 #State consist of a list of 9 numbers(0 to 8) tahth indicates the position of each box. Being the 0 the blank space
 #Random Initial state
 initialState=[1,2,3,4,5,6,7,8,0]
@@ -99,8 +85,7 @@ Actions=['L','U','R','D']
 FirstNode=State()
 FirstNode.setList(initialState)
 FirstNode.setFather(None)
-
 counter=BFS(FirstNode,Actions)
 print(counter)
-
+print("--- %s seconds ---" % (time.time() - start_time))
 
