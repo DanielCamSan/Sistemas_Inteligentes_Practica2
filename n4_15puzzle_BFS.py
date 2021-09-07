@@ -1,3 +1,5 @@
+from os import read
+from numpy import genfromtxt
 from queue import Queue
 import time
 
@@ -22,7 +24,7 @@ def compare(list1,list2):
     return True
 
 # Swap position in a list
-def swapPositions(list, pos1, pos2):   
+def swap_positions(list, pos1, pos2):   
     list[pos1], list[pos2] = list[pos2], list[pos1]
     return list
 
@@ -34,20 +36,20 @@ def TF(state, action,path):
     if action == 'L':
         if listNew[3]==0 or listNew[7]==0 or listNew[11]==0 or listNew[15]==0 :  #verify if it is possible
             return None
-        resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)+1)        
+        resulList=swap_positions(listNew,listNew.index(0),listNew.index(0)+1)        
             
     elif action == 'U':
         if listNew[12]==0 or listNew[13]==0 or listNew[14]==0 or listNew[15]==0:  #verify if it is possible
             return None
-        resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)+4)
+        resulList=swap_positions(listNew,listNew.index(0),listNew.index(0)+4)
     elif action == 'R':
         if listNew[0]==0 or listNew[4]==0 or listNew[8]==0 or listNew[12]==0:  #verify if it is possible
             return None
-        resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)-1)
+        resulList=swap_positions(listNew,listNew.index(0),listNew.index(0)-1)
     elif action == 'D':
         if listNew[0]==0 or listNew[1]==0 or listNew[2]==0 or listNew[3]==0:  #verify if it is possible
             return None
-        resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)-4)
+        resulList=swap_positions(listNew,listNew.index(0),listNew.index(0)-4)
 
     for singleState in path:
         if compare(singleState,resulList):
@@ -55,21 +57,21 @@ def TF(state, action,path):
     return resulList
 
 # Where the magic start,
-def BFS(initialState, Actions, goalState):
-    path=[initialState.list]
+def BFS(initial_state, actions, goal_state):
+    path=[initial_state.list]
     state_counter=1 #count the initial state 
-    q.put(initialState)
+    q.put(initial_state)
     while not q.empty():
         state=q.get()
-        if compare(goalState,state.list):
+        if compare(goal_state,state.list):
             return state_counter,state,path
-        for action in Actions:
+        for action in actions:
             sucessor=State()
             sucessor.list=TF(state,action,path)
             if sucessor.list != None: #return none if the state cant expand or if it already exist
                 state_counter=state_counter+1
                 sucessor.setFather(state)
-                if compare(goalState,sucessor.list):
+                if compare(goal_state,sucessor.list):
                    return state_counter,sucessor,path
                 q.put(sucessor)
                 path.append(sucessor.list)
@@ -77,48 +79,44 @@ def BFS(initialState, Actions, goalState):
 
 
 # The last step show the steps
-def showPath (path):
+def show_path (path):
     for item in path:
         print("[ ",end="")
         for number in item:
             print(number,"  ",end="")
         print("]")
 
+def read_from_csv ():
+    data = genfromtxt('Data_Files/Data_15_Puzzle.csv', usecols= range(1, 17) , delimiter=",", dtype=int)
+    initial_state_parsed = [x for x in data[0]]
+    goal_state_parsed = [x for x in data[1]]
+    return initial_state_parsed, goal_state_parsed
 
-# Where the main begin
-start_time = time.time()
-# State consist of a list of 9 numbers(0 to 8) tahth indicates the position of each box. Being the 0 the blank space
-#Random Initial state
-initialState=[1,2,10,3,6,5,7,0,4,8,14,11,12,9,13,15]
-#we define the goal state
-goalState=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-#we define the actions LURD (Left, Up, Right, Down)
-Actions=['L','U','R','D'] 
-#define Initial State
-FirstNode=State()
-FirstNode.setList(initialState)
-FirstNode.setFather(None)
-counter,objective,path=BFS(FirstNode,Actions,goalState)
-print("The number of space states are ",counter)
-#showPath(path)
+# State consist of a list of 16 numbers(0 to 15) tahth indicates the position of each box. Being the 0 the blank space
+if __name__ == '__main__':
 
-print("=============================================")
-goalPath=[]
-state=State()
-if  objective != None:
-    state=objective.father
-    goalPath.append(objective.list)
-    while(state.father != None):    
-        goalPath.append(state.list);
-        state=state.father
-    goalPath.append(state.list);
-    goalPath.reverse()
-    showPath(goalPath)
-    print("The number of steps to find the goal state are",len(goalPath)-1)
-
-
-
-
-print("--- %s seconds ---" % (time.time() - start_time))
+    start_time = time.time()
+    initial_state, goal_state = read_from_csv() # We define the goal and initial state
+    actions=['L','U','R','D'] # We define the actions LURD (Left, Up, Right, Down) 
+    first_node=State()  # Define Initial State
+    first_node.setList(initial_state)
+    first_node.setFather(None)
+    counter,objective,path=BFS(first_node,actions,goal_state)
+    print("\nNumber of space states are:",counter)
+    #show_path(path)
+    print("\n==============================\n")
+    goal_path=[]
+    state=State()
+    if  objective != None:
+        state=objective.father
+        goal_path.append(objective.list)
+        while(state.father != None):    
+            goal_path.append(state.list);
+            state=state.father
+        goal_path.append(state.list);
+        goal_path.reverse()
+        show_path(goal_path)
+        print("\nNumber of steps to find the goal state are:",len(goal_path)-1)
+    print("--- Time: %s seconds ---" % (time.time() - start_time))
 
 

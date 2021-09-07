@@ -76,8 +76,6 @@ def read_from_csv ():
     data = genfromtxt('Data_Files/Data_8_Puzzle.csv', usecols= range(1, 10) , delimiter=",", dtype=int)
     initial_state_parsed = [x for x in data[0]]
     goal_state_parsed = [x for x in data[1]]
-    print (initial_state_parsed)
-    print (goal_state_parsed)
     return initial_state_parsed, goal_state_parsed
 
 # State consist of a list of 9 numbers(0 to 8) tahth indicates the position of each box. Being the 0 the blank space
