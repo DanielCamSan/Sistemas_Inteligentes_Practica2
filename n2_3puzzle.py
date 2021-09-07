@@ -14,19 +14,19 @@ class State:
     def setFather(self, father):
         self.father=father
         
-#Compare 2 Lists
+# Compare 2 Lists
 def compare(list1,list2):
     for i in range(len(list1)):
         if list1[i]!=list2[i]:
             return False
     return True
 
-#Swap position in a list
-def swapPositions(list, pos1, pos2):   
+# Swap position in a list
+def swap_positions(list, pos1, pos2):   
     list[pos1], list[pos2] = list[pos2], list[pos1]
     return list
 
-#Transition function expect a state and an action and will return the possible succesor state in base of the action
+# Transition function expect a state and an action and will return the possible succesor state in base of the action
 def TF(state, action,path):
     resulList=[]
     father = state.father
@@ -34,23 +34,22 @@ def TF(state, action,path):
     if action == 'L':
         if listNew[1]==0 or listNew[3]==0 :  #verify if it is possible
             return None
-        resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)+1)        
+        resulList=swap_positions(listNew,listNew.index(0),listNew.index(0)+1)        
        
     elif action == 'U':
         if listNew[2]==0 or listNew[3]==0:  #verify if it is possible
             return None
-        resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)+2)
+        resulList=swap_positions(listNew,listNew.index(0),listNew.index(0)+2)
        
     elif action == 'R':
         if listNew[0]==0 or listNew[2]==0:  #verify if it is possible
             return None
-        resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)-1)
+        resulList=swap_positions(listNew,listNew.index(0),listNew.index(0)-1)
 
     elif action == 'D':
         if listNew[0]==0 or listNew[1]==0 :  #verify if it is possible
             return None
-        resulList=swapPositions(listNew,listNew.index(0),listNew.index(0)-2)
-      
+        resulList=swap_positions(listNew,listNew.index(0),listNew.index(0)-2)
 
    # while father != None: #compare if the father list is not the same of the result List
     #    if compare(resulList,father.list):
@@ -62,14 +61,14 @@ def TF(state, action,path):
             return None
     return resulList
 
-#Where the magic start,
-def BFS(initialState, Actions):
-    path=[initialState.list]
+# Where the magic start
+def BFS(initial_state, actions):
+    path=[initial_state.list]
     state_counter=1
-    q.put(initialState)
+    q.put(initial_state)
     while not q.empty():
         state=q.get()        
-        for action in Actions:
+        for action in actions:
             sucessor=State()
             sucessor.list=TF(state,action,path)
             if sucessor.list != None: #return none if the state cant expand or if it already exist
@@ -81,39 +80,35 @@ def BFS(initialState, Actions):
 
 
 #The last step show the steps
-def showPath (path):
+def show_path (path):
     for item in path:
-        print("[ ",end="")
+        print("[  ",end="")
         for number in item:
             print(number,"  ",end="")
         print("]")
 
 def read_from_csv ():
-    data = genfromtxt('my_file.csv', usecols= range(1, 5) , delimiter=",", dtype=int)
+    data = genfromtxt('Data_Files/Data_3_Puzzle.csv', usecols= range(1, 5) , delimiter=",", dtype=int)
     initial_state_parsed = [x for x in data[0]]
     goal_state_parsed = [x for x in data[1]]
-    print(initial_state_parsed)
-    print(goal_state_parsed)
     return initial_state_parsed, goal_state_parsed
 
-data_test = read_from_csv()
-#Where the main begin
-#State consist of a list of 9 numbers(0 to 8) tahth indicates the position of each box. Being the 0 the blank space
-#Random Initial state
-initialState=[0,3,1,2]
-#shuffle(initialState)#
-
-#we define the actions LURD (Left, Up, Right, Down)
-Actions=['L','U','R','D'] 
-
-#define Initial State
-FirstNode=State()
-FirstNode.setList(initialState)
-FirstNode.setFather(None)
+#State consist of a list of 4 numbers(0 to 4) each indicates the position of each box. Being the 0 the blank space
+if __name__ == '__main__':
+    initial_state, goal_state = read_from_csv()
+    # shuffle(initial_state) # Random Initial state 
+    actions=['L','U','R','D']  # We define the actions LURD (Left, Up, Right, Down)
+    first_node=State() # Define Initial State
+    first_node.setList(initial_state)
+    first_node.setFather(None)
+    counter,path=BFS(first_node,actions)
+    print("States: ", len(path))
+    show_path(path)
 
 
-counter,path=BFS(FirstNode,Actions)
-print(len(path))
-showPath(path)
+
+
+
+
 
 

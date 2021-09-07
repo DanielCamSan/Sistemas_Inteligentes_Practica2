@@ -14,19 +14,19 @@ class State:
     def setFather(self, father):
         self.father=father
         
-#Compare 2 Lists
+# Compare 2 Lists
 def compare(list1,list2):
     for i in range(len(list1)):
         if list1[i]!=list2[i]:
             return False
     return True
 
-#Swap position in a list
+# Swap position in a list
 def swapPositions(list, pos1, pos2):   
     list[pos1], list[pos2] = list[pos2], list[pos1]
     return list
 
-#Transition function expect a state and an action and will return the possible succesor state in base of the action
+# Transition function expect a state and an action and will return the possible succesor state in base of the action
 def TF(state, action,path):
     resulList=[]
     father = state.father
@@ -54,7 +54,7 @@ def TF(state, action,path):
             return None
     return resulList
 
-#Where the magic start,
+# Where the magic start,
 def BFS(initialState, Actions, goalState):
     path=[initialState.list]
     state_counter=1 #count the initial state 
@@ -76,7 +76,7 @@ def BFS(initialState, Actions, goalState):
     return state_counter,None,path
 
 
-#The last step show the steps
+# The last step show the steps
 def showPath (path):
     for item in path:
         print("[ ",end="")
@@ -85,9 +85,9 @@ def showPath (path):
         print("]")
 
 
-#Where the main begin
+# Where the main begin
 start_time = time.time()
-#State consist of a list of 9 numbers(0 to 8) tahth indicates the position of each box. Being the 0 the blank space
+# State consist of a list of 9 numbers(0 to 8) tahth indicates the position of each box. Being the 0 the blank space
 #Random Initial state
 initialState=[1,2,10,3,6,5,7,0,4,8,14,11,12,9,13,15]
 #we define the goal state
