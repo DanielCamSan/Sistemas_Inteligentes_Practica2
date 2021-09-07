@@ -66,13 +66,11 @@ In both files the code is the same the only variant is the size of the list. Als
 ## 3. For N = 4
 
 15! = 1 307 674 368 000, where only half (653 837 184 000) states have a solution
+	In this exercise we dont see all the space states in the three, we just focus to identify the difference at using memory and the time used  beetwen the BFS and ID alghoritm, so with that objective we develop 2 files with each alghoritm, we define the initial and goal state in a CSV file that is located in Data_Files=> "Data_15_Puzzle.csv". Finally with the results we made a table comparing them.
 
-In this exercise we dont see all the space states in the three, we just focus to identify the difference at using memory and the time used  beetwen the BFS and ID alghoritm, so with that objective we develop 2 files with each alghoritm. 
 
-	The code used to solve the problem with BFS is "n4_15puzzle_BFS_solver.py"
-	The code used to solve the problem with ID is "n4_15puzzle_ID_solver.py"
-
-Finally with the results we made a table comparing them
+	The code used to get the states used ant the time wasted with BFS is "n4_15puzzle_BFS.py", we used the alghoritms that we saw in classes
+	The code used to get the states used ant the time wasted with Iterative Deepening is "n4_15puzzle_ID.py", we used the alghoritms that we saw in classes
 
 
 ---
@@ -127,6 +125,13 @@ Steps |  BFS  | ID
 10 | 5 143 States | 479 109 States
 14 | 69 833 States | 33 128 735 States
 
+
+---
+
+In conclusion we can see that ID is better than BFS in time comparisson but is worst in Memory Comparisson this is because with DFs we try to expand all the states at the same time  and with ID we look for the state changing the depth if we cant find it, but it uses DFS on the back, also the reason for which the number of states in Id are bigger is because we get the sumatory of all the states in each depth index, and with BFS the use of memry is exponencial.
+
+
+---
 ## Display States
 
 Inside the 'Display_States' folder we can see 
