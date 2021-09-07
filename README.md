@@ -1,13 +1,12 @@
 # Intelligent Systems Practice 2 📚
 
-### 📕 First we have to design the Problem Solver Agent and for this we have a to follow the steps that we learn in classes.
+### 📕 First we have to design the Problem Solver Agent and for this we have a to follow the steps that we learn in classes. (Click in the arrow)
 
 
 <details>
   <summary>Formulate the Objective</summary>
 
   	- The first box must be empty.
-
     - The rest of the boxes must be sorted ascending.
 
 </details>
@@ -45,21 +44,35 @@
 
 ## 1. For N = 2
 
-4! = 24, where 12 states have a solution and 12 haven't a solution, eventually we can probe that with the png added in the repository  
+4! = 24, where 12 states have a solution and 12 haven't a solution, eventually we can probe that with the png added in the repository (folder 'Images', name 'N2_Tree_States.png') 
+
 Here we could only have 2 possible states of a node, where one of those possible states from the second state will mostly be a repeated state.
+
+	The code used to get all the states is "n2_3puzzle.py", we used the alghoritms that we saw in classes (BFS)
+	The code used to solve the problem is "n2_3puzzle_solver.py", we used BFS
+	The code used to generate the csv with all the posible is "display_n_puzzle.py"
 
 ## 2. For N = 3
 
 9! = 362 880, where 181 440 states have a solution and 181 440 haven't a solution 
-	We can probe it with the n=2 puzle code that we made, we did that because building and running all the states in n=3 puzzle takes 6790.9135222435 seconds because the comparisson between all the states with the pointed state takes a lot of time, but it works perfectly. in both files the code is the same the only variant is the size of the list. Also we made a plus for see all the posible states and exporting them in a csv file:
 
-	The code used to get all the states is "n3_8puzzle.py", we used the alghoritms that we saw in classes
+We can probe it with the n=2 puzle code that we made, we did that because building and running all the states in n=3 puzzle takes 6790.9135222435 seconds because the comparisson between all the states with the pointed state takes a lot of time, but it works perfectly. 
+
+In both files the code is the same the only variant is the size of the list. Also we made a plus for see all the posible states and exporting them in a csv file:
+
+	The code used to get all the states is "n3_8puzzle.py", we used the alghoritms that we saw in classes (BFS)
 	The code used to generate the csv with all the posible is "display_n_puzzle.py"
 
 ## 3. For N = 4
 
 15! = 1 307 674 368 000, where only half (653 837 184 000) states have a solution
-	In this exercise we dont see all the space states in the three, we just focus to identify the difference at using memory and the time used  beetwen the BFS and ID alghoritm, so with that objective we develop 2 files with each alghoritm. Finally with the results we made a table comparing them
+
+In this exercise we dont see all the space states in the three, we just focus to identify the difference at using memory and the time used  beetwen the BFS and ID alghoritm, so with that objective we develop 2 files with each alghoritm. 
+
+	The code used to solve the problem with BFS is "n4_15puzzle_BFS_solver.py"
+	The code used to solve the problem with ID is "n4_15puzzle_ID_solver.py"
+
+Finally with the results we made a table comparing them
 
 
 ---
@@ -116,6 +129,7 @@ Steps |  BFS  | ID
 
 ## Display States
 
+Inside the 'Display_States' folder we can see 
 Dentro de la carpeta 'Display_States' podemos ver dentro de un archivo .csv todos los estados posibles (que tienen solucion y que no tienen solucion) de manera grafica para N = 2 (3 Puzzle) y N = 3 (8 Puzzle) mostrando al final el contador de los cuadros dando como resultado 'All States: 24' y 'All States: 362880'.
 Para N = 4 el csv era demasiado pesado.
 
