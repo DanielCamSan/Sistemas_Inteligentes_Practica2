@@ -1,5 +1,9 @@
 # Intelligent Systems Practice 2 📚
 
+### Daniel Camacho
+### Adrian Mendoza
+### Juslan Vargas
+
 ### 📕 First we have to design the Problem Solver Agent and for this we have a to follow the steps that we learn in classes. (Click in the arrow)
 
 
