@@ -83,8 +83,7 @@ if __name__ == '__main__':
 
     start_time = time.time()
     initial_state, goal_state = read_from_csv()
-    #[3,1,2,4,5,8,6,0,7]
-    # shuffle(initial_state) # Random Initial state
+    shuffle(initial_state) # Random Initial state
     actions=['L','U','R','D'] # We define the actions LURD (Left, Up, Right, Down)
     first_node=State() # Define Initial State
     first_node.setList(initial_state)
