@@ -83,12 +83,17 @@ if __name__ == '__main__':
 
     start_time = time.time()
     initial_state, goal_state = read_from_csv()
+    second_initial_state= swap_positions(initial_state, 1, 2)  if  initial_state[1]!=0 and initial_state[2]!=0 else  swap_positions(initial_state, 4, 5) ## We change the positions to unlock the new set of states
     shuffle(initial_state) # Random Initial state
     actions=['L','U','R','D'] # We define the actions LURD (Left, Up, Right, Down)
     first_node=State() # Define Initial State
     first_node.setList(initial_state)
     first_node.setFather(None)
     counter=BFS(first_node,actions)
-    print(counter)
+    print("First Set Of States", counter)
+    first_node.setList(second_initial_state)
+    counter=counter+BFS(first_node,actions)
+    print("First + Second Set Of States", counter)
     print("--- Time: %s seconds ---" % (time.time() - start_time))
+    
 

@@ -56,7 +56,7 @@ Here we could only have 2 possible states of a node, where one of those possible
 
 9! = 362 880, where 181 440 states have a solution and 181 440 haven't a solution 
 
-We can probe it with the n=2 puzle code that we made, we did that because building and running all the states in n=3 puzzle takes 6790.9135222435 seconds because the comparisson between all the states with the pointed state takes a lot of time, but it works perfectly. 
+We can probe it with the n=2 puzle code that we made, we did that because building and running all the states in n=3 puzzle takes 6790.9135222435 seconds because the comparisson between all the states with the pointed state takes a lot of time, but it works perfectly. When the program is running we print the number of states.
 
 In both files the code is the same the only variant is the size of the list. Also we made a plus for see all the posible states and exporting them in a csv file:
 
@@ -130,7 +130,7 @@ Steps |  BFS  | ID
 
 ---
 
-In conclusion we can see that ID is better than BFS in time comparisson but is worst in Memory Comparisson this is because with DFs we try to expand all the states at the same time  and with ID we look for the state changing the depth if we cant find it, but it uses DFS on the back, also the reason for which the number of states in Id are bigger is because we get the sumatory of all the states in each depth index, and with BFS the use of memry is exponencial.
+In conclusion we can see that ID is better than BFS in time comparisson but is worst in Memory Comparisson this is because with DFs we try to expand all the states at the same time  and with ID we look for the state changing the depth if we cant find it, but it uses DFS on the back, also the reason for which the number of states in Id are bigger is because we get the sumatory of all the states in each depth index, and with BFS the use of memory is exponencial.
 
 
 ---
