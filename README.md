@@ -66,11 +66,13 @@ In both files the code is the same the only variant is the size of the list. Als
 ## 3. For N = 4
 
 15! = 1 307 674 368 000, where only half (653 837 184 000) states have a solution
-	In this exercise we dont see all the space states in the three, we just focus to identify the difference at using memory and the time used  beetwen the BFS and ID alghoritm, so with that objective we develop 2 files with each alghoritm, we define the initial and goal state in a CSV file that is located in Data_Files=> "Data_15_Puzzle.csv". Finally with the results we made a table comparing them.
 
+In this exercise we dont see all the space states in the three, we just focus to identify the difference at using memory and the time used  beetwen the BFS and ID alghoritm, so with that objective we develop 2 files with each alghoritm, we define the initial and goal state in a CSV file that is located in Data_Files=> "Data_15_Puzzle.csv". 
 
 	The code used to get the states used ant the time wasted with BFS is "n4_15puzzle_BFS.py", we used the alghoritms that we saw in classes
 	The code used to get the states used ant the time wasted with Iterative Deepening is "n4_15puzzle_ID.py", we used the alghoritms that we saw in classes
+
+Finally with the results we made a table comparing them.
 
 
 ---
@@ -134,16 +136,20 @@ In conclusion we can see that ID is better than BFS in time comparisson but is w
 ---
 ## Display States
 
-Inside the 'Display_States' folder we can see 
-Dentro de la carpeta 'Display_States' podemos ver dentro de un archivo .csv todos los estados posibles (que tienen solucion y que no tienen solucion) de manera grafica para N = 2 (3 Puzzle) y N = 3 (8 Puzzle) mostrando al final el contador de los cuadros dando como resultado 'All States: 24' y 'All States: 362880'.
-Para N = 4 el csv era demasiado pesado.
+Inside the 'Display_States' folder we can see a .csv file with all possible states (which have a solution and which havn't solution)
+in table for N = 2 (3 Puzzle) and N = 3 (8 Puzzle) showing at the End a counter of all states,('All States: 24' and 'All States: 362880').
+For N = 4 the csv is too heavy.
 
-### Ejecucion
-- Dentro de la carpeta 'Display_States' States abrir una terminal.
-- Ingresar en la terminal el comando 'python display_n_puzzle.py'.
-- Ingresar el tamaño del puzzle a graficar.
-- Se mostrar el archivo 'N_Puzzle_Output.csv' 
-- Dentro del archivo se graficaran todas las tablas de los estados, mostrando al final la cantidad de estados posibles.
+## Execution
+### N Puzzle
+- In the root of project open a terminal.
+- Insert the command 'python [file_name].py'.
+### Display States
+- Inside the 'Display_States' folder open a terminal.
+- Insert the command 'python display_n_puzzle.py'.
+- Insert the size of the puzzle to graph.
+- The file 'N_Puzzle_Output.csv' will be displayed
+- All the state tables will be graphed, showing at the end the number of possible states.
 
 
 
